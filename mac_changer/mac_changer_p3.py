@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import subprocess
 import optparse
@@ -6,8 +6,8 @@ import re
 
 def get_arguments():
   parser = optparse.OptionParser()
-  parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
-  parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
+  parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC adress")
+  parser.add_option("-m", "--mac", dest="new_mac", help="New MAC adress")
   # the method returns to set of informations, and we are capturing them in variables
   (options, arguments) = parser.parse_arg()
   if not options.interface:
@@ -25,7 +25,7 @@ def change_mac(interface, new_mac):
 
 def get_current_mac(interface):
   ifconfig_result = subprocess.check_output(["ifconfig", interface])
-  mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+  mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
 
   if mac_address_search_result:
     return mac_address_search_result.group(0)
@@ -41,7 +41,7 @@ change_mac(options.interface, options.new_mac)
 
 current_mac = get_current_mac(options.interface)
 if current_mac == options.new_mac:
-  print("[+] MAC address was successfully changed to " + current_mac)
+  print("[+] MAC address was succesfully changed to " + current_mac)
 else:
   print("[-] MAC address did not get changed.")
-# this is used like: python mac_changer.py --interface eth0 --mac 00:11:22:33:44:55
+# this is used like: python3 mac_changer_p3.py --interface eth0 --mac 00:11:22:33:44:55
