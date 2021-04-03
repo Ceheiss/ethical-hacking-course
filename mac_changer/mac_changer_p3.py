@@ -21,8 +21,8 @@ def change_mac(interface, new_mac):
   # each element of the list is a word in the command
   subprocess.call(["ifconfig", interface, "down"])
   subprocess.call(["ifconfig", interface, "hw", "ether", new_mac])
-  subprocess.call(["ifconfig", interface, "up"])each element omber to change
-
+  subprocess.call(["ifconfig", interface, "up"])
+  
 def get_current_mac(interface):
   ifconfig_result = subprocess.check_output(["ifconfig", interface])
   mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", str(ifconfig_result))
