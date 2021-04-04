@@ -9,7 +9,7 @@ def get_arguments():
   parser.add_option("-i", "--interface", dest="interface", help="Interface to change MAC address")
   parser.add_option("-m", "--mac", dest="new_mac", help="New MAC address")
   # the method returns to set of informations, and we are capturing them in variables
-  (options, arguments) = parser.parse_arg()
+  (options, arguments) = parser.parse_args()
   if not options.interface:
     parse.error("[-] Please specify an interface, use --help for more info")
   elif not options.new_mac:
